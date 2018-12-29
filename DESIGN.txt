@@ -1,0 +1,45 @@
+﻿Jackie Li, Lynne Wang, Tiffany Zhong
+
+
+~Description of Project: Multiplayer Minesweeper~
+Players will compete against each other in a minesweeper game. Players will get points based on how many bombs they directly identify and how many safe spaces they identify. They will be penalized for opening up spaces with bombs and incorrectly placing flags. The game ends when all bombs have been identified and all spaces have been uncovered.
+
+
+~User Interface:~
+The users will play this game in the terminal. Spaces on the board that have been untouched are represented by underscores. Bombs are represented by X’s. Flags are represented by >. Cleared spaces are represented by O’s. Numbers will appear on spaces that have bombs next to them. The user can perform actions on spaces by entering coordinates and selecting the appropriate move (open, place flag).
+
+
+~Technical Design:~
+~~Topics Covered in Class:~~
+- Signals
+- Shared memory
+- Forking
+- Semaphores
+- Networking - main server that sends info of updated board to all players
+
+
+~~Breakdown:~~
+Working together for the most part.
+- Jackie:
+Setting up the server and client system
+- Lynne:
+Minesweeper board struct, method to create and update boards
+- Tiffany:
+Score system, leaderboard
+
+
+~~Data Structures:~~
+- Struct for storing board states
+- Struct for storing the scores of the users
+- Server that will handle multiple action requests from players
+
+
+~~Algorithms:~~
+- Method to create random boards (placing bombs at random spaces)
+- Sorter for the leaderboard
+
+
+~~Timeline:~~
+12/28 - Complete proposal
+1/7 - Setup server-client system, methods for generating boards
+1/15 - Score system and leaderboard, methods that will carry out actions performed on boards, debugging
