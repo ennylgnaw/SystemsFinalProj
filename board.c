@@ -67,7 +67,12 @@ int countbombs(char * b[][],int row,int col){
 
 }
 
-
+void generateboard(char *b[][SIDE]) {
+  for(int r = 0; r < SIDE; r++)
+    for(int c = 0; c < SIDE; c++)
+      if (! b[r][c] == "*")
+	b[r][c] = countbombs(b, r, c);
+}
 
 
 main(){
