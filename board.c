@@ -21,61 +21,78 @@ void generatebombs(char * b[][SIDE]) {
   while(numofbombs){
     for(int r = 0; r < SIDE; r++)
       for(int c = 0; c < SIDE; c++)
-	if (rand()%17 == 1 && b[r][c] == "_") {
+	if (rand()%17 == 1 && strcmp(b[r][c], "_") == 0) {
 	  b[r][c] = "*";
 	  numofbombs -= 1;
         }
   }
 }
 
-int countbombs(char * b[][],int row,int col){
+char countbombs(char * b[][SIDE],int row,int col){
   int counter = 0;
   char n = b[row - 1][col];
-  if(n == "*"){
+  if(strcmp(n, "*") == 0){
     counter += 1;
   }
   char s = b[row + 1][col];
-  if(s == "*"){
+  if(strcmp(s, "*") == 0){
     counter += 1;
   }
   char e = b[row][col-1];
-  if(e == "*"){
+  if(strcmp(e, "*") == 0){
     counter += 1;
   }
   char w = b[row][col + 1];
-  if(w == "*"){
+  if(strcmp(w, "*") == 0){
     counter += 1;
   }
   char ne = b[row - 1][col - 1];
-  if(ne == "*"){
+  if(strcmp(ne, "*") == 0){
     counter += 1;
   }
-  char nw = [row - 1][col + 1];
-  if(nw == "*"){
+  char nw = b[row - 1][col + 1];
+  if(strcmp(nw, "*") == 0){
     counter += 1;
   }
 
-  char se = [row + 1][ col - 1];
-  if(se == "*"){
+  char se = b[row + 1][ col - 1];
+  if(strcmp(se, "*") == 0){
     counter += 1;
   }
-  char sw = [row + 1][col + 1];
-  if(sw == "*"){
+  char sw = b[row + 1][col + 1];
+  if(strcmp(sw, "*") == 0){
     counter += 1;
   }
-  return counter;
+  return (char) counter;
 
 }
 
 void generateboard(char *b[][SIDE]) {
   for(int r = 0; r < SIDE; r++)
     for(int c = 0; c < SIDE; c++)
-      if (! b[r][c] == "*")
+      if (strcmp(b[r][c], "*") != 0)
 	b[r][c] = countbombs(b, r, c);
+}
+
+void printboard(char *b[][SIDE]) {
+  int r, c;
+  printf("    ");
+  for(int r = 0; r < SIDE; r++)
+    printf("%d ", r);
+  printf("\n\n");
+  for(int r = 0; r < SIDE; r++) {
+    printf("%d ", r);
+    for(c = 0; c < SIDE; c++)
+      printf("%s ", b[r][c]);
+    printf("\n");
+  }
 }
 
 
 main(){
-  char answerboard[24][24];
+  char * aboard[24][24];
+  generatebombs(aboard);
+  generateboard(aboard);
+  printboard(aboard);
   return 0;
 }
