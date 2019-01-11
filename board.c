@@ -16,8 +16,29 @@
 
 void generatebombs(char * b[][SIDE]) {
   int x = 0;
-  int num;
+  int numofbombs = 99;
   srand(time(NULL));
-  while(rand()%17
-
-	}
+  while(numofbombs){
+    for(int r = 0; r < SIDE; r++)
+      for(int c = 0; c < SIDE; c++)
+	if (rand()%17 == 1 && b[r][c] == "_") {
+	  b[r][c] = "*";
+	  numofbombs -= 1;
+        }
+  }
+}
+int countbombs(char * b[][],int row,int col){
+  char n = b[row - 1][col];
+  char s = b[row + 1][col];
+  char e = b[row][col-1];
+  char w = b[row][col + 1];
+  char ne = b[row - 1][col - 1];
+  char nw = [row - 1][col + 1];
+  char se = [row + 1][ col - 1];
+  char sw = [row + 1][col + 1];
+  
+}
+main(){
+  char answerboard[24][24];
+  return 0;
+}
