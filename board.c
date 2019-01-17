@@ -98,13 +98,20 @@ void addbombcount(char *b[][SIDE]) {
   for(int r = 0; r < SIDE; r++)
     for(int c = 0; c < SIDE; c++)
       if (strcmp(b[r][c], "*") != 0) {
-	*b[r][c] = (char) countbombs(b, r, c);
+	//strcpy(b[r][c], (const char *) countbombs(b, r, c));
+	if (countbombs(b, r, c) > 0) {
+	  char chr;
+	  int i = countbombs(b, r, c);
+	  printf("%d\n", i);
+	  chr = i;
+	  b[r][c] = &chr;
+	}
       }
 }
 
 void printboard(char *b[][SIDE]) {
   int r, c;
-  printf("    ");
+  printf("\n    ");
   for(c = 0; c < SIDE; c++)
     printf("%-4d", c);
   printf("\n\n");
@@ -116,15 +123,16 @@ void printboard(char *b[][SIDE]) {
   }
 }
 
-
 int main(){
   char *aboard[SIDE][SIDE];
+  //char *aboard = malloc(sizeof(char[SIDE][SIDE]));
   generateboard(aboard);
   generatebombs(aboard);
   printboard(aboard);
   printf("%d\n", countbombs(aboard, 0, 0));
   printf("%d\n", countbombs(aboard, 12, 12));
   addbombcount(aboard);
+  printboard(aboard);
   /*
     countbombs(aboard, 12, 12);
     generateboard(aboard);
