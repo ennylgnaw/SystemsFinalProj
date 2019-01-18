@@ -59,14 +59,14 @@ void process(char * s) {
   }
   printf("]\n");
 
-  while (*s) {
+  /*while (*s) {
     for (int j = 0; j < ctr; j++) {
       //printf("Adding %d \n", foo[j]);
       sprintf(s, "%d ", foo[j]);
     }
     s++;
-  }
+  }*/
 
   s = foo;
-  printf("%s\n", s);
+  printf("Final String: %s\n", s);
 }
