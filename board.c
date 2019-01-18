@@ -100,11 +100,19 @@ void addbombcount(char *b[][SIDE]) {
       if (strcmp(b[r][c], "*") != 0) {
 	//strcpy(b[r][c], (const char *) countbombs(b, r, c));
 	if (countbombs(b, r, c) > 0) {
-	  char chr;
 	  int i = countbombs(b, r, c);
-	  printf("%d\n", i);
-	  chr = i;
-	  b[r][c] = &chr;
+	  char * a;
+	  //char ch = i + '0';
+	  //printf("%c\n", *(&ch));
+	  if (i == 1) a = "1";
+	  if (i == 2) a = "2";
+	  if (i == 3) a = "3";
+	  if (i == 4) a = "4";
+	  if (i == 5) a = "5";
+	  if (i == 6) a = "6";
+	  if (i == 7) a = "7";
+	  if (i == 8) a = "8";
+	  b[r][c] = a;
 	}
       }
 }
@@ -122,6 +130,50 @@ void printboard(char *b[][SIDE]) {
     printf("\n\n");
   }
 }
+/*
+int userscore = 0;
+int checkscores(char *ansboard[][SIDE],char *userboard[][SIDE], int row, int col){
+  if (strcmp(userboard[row][col], "_")!= 0){
+    printf("NON-VALID USER INPUT. ENTER VALID COORDINATES:\n");
+  }
+  if (strcmp(ansboard[row][col],"_") == 0){
+    userscore += 2;
+    //if it's an empty box
+    //int directions[8][2] = {{row-1,col},{row+1,col},{row,col-1},{row,col+1},{row-1,col-1},{row-1,col+1},{row+1,col-1},{row+1,col+1}};
+    //explore the different directions
+    //ADD TO SCORE
+    checkscores(ansboard,userboard,row-1,col);
+    checkscores(ansboard,userboard,row+1,col);
+    checkscores(ansboard,userboard,row,col-1);
+    checkscores(ansboard,userboard,row,col+1);
+    checkscores(ansboard,userboard,row-1,col-1);
+    checkscores(ansboard,userboard,row+1,col+1);
+    checkscores(ansboard,userboard,row-1,col+1);
+    checkscores(ansboard,userboard,row+1,col-1);
+    //recursive function:
+    //base case: if there is a BOMB or NUMBER
+    return 0;
+
+  }
+  else if(strcmp(ansboard[row][col],"*") == 0){
+    userscore -= 4;
+    userboard[row][col] = "*";
+    //SUBTRACT FROM THE USER SCORE!!!!!
+    //IMPLEMENT LATER!!!!!
+    return 0;
+  }
+  else{
+    //if it's a number
+    //ADD TO SCORE
+    userscore += 2;
+    userboard[row][col] = ansboard[row][col];
+    return 0;
+    }
+
+}
+*/
+
+
 
 int main(){
   char *aboard[SIDE][SIDE];
@@ -129,8 +181,8 @@ int main(){
   generateboard(aboard);
   generatebombs(aboard);
   printboard(aboard);
-  printf("%d\n", countbombs(aboard, 0, 0));
-  printf("%d\n", countbombs(aboard, 12, 12));
+  printf("%c\n", countbombs(aboard, 0, 0));
+  printf("%c\n", countbombs(aboard, 12, 12));
   addbombcount(aboard);
   printboard(aboard);
   /*
