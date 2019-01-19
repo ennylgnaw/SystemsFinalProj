@@ -16,5 +16,6 @@ Competitive Minesweeper is a twist on the classic minesweeper game. Clients will
 - The user will first see an empty minesweeper board
 - They will have to enter in the coordinates (row, column, separated by a space), when prompted. This will open up that space, and perhaps other empty ones.
 - Symbols: `-` is an empty space, `*` is a mine, and numbers indicate how many mines the space is surrounded by
-- Opening up a space with a mine will cost you many points, whereas opening up safe spaces will earn you points
-- The game ends when everyone has finished their game, and scores will be calculated
+- Opening up a space with a mine will cost you a life, whereas opening up safe spaces will continue the game.
+- You are given 3 lives, so be careful not to waste them.
+- The game ends when you have revealed the entire board.

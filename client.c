@@ -2,6 +2,7 @@
 
 int main(int argc, char **argv) {
 
+  int lives = 3;
   int server_socket;
   char buffer[BUFFER_SIZE];
 
@@ -18,9 +19,13 @@ int main(int argc, char **argv) {
   generateboard(user);
   generatebombs(aboard);
   while (1) {
+    if (lives <= 0) {
+      printf("Game Over. Try Again.\n");
+      return 0;
+    }
     printboard(user);
     addbombcount(aboard);
-    printboard(aboard);
+    //    printboard(aboard);
     printf("enter data: ");
     fgets(buffer, sizeof(buffer), stdin);
     *strchr(buffer, '\n') = 0;
@@ -29,9 +34,10 @@ int main(int argc, char **argv) {
     printf("received: [%d]\n", *(buffer));
     printf("received: [%d]\n", *(buffer+1));
 
-    int scores = 0;
-    scores = checkscores(aboard, user, *(buffer), *(buffer+1));
-    printf("Your Score is :%d\n", scores);
+    
+    
+    lives += checkscores(aboard, user, *(buffer), *(buffer+1));
+    printf("Lives Remaining : %d\n", lives);
 
     //CALL FUNCTION checkscores() here with parameters: ( answerboard, userboard, *(buffer), *(buffer+1) )
     

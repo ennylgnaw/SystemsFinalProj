@@ -16,7 +16,7 @@
 #define BOMB 40
 
 void generatebombs(char *b[][SIDE]) {
-  int numofbombs = 99;
+  int numofbombs = 35;
   srand(time(NULL));
   while (numofbombs) {
     int x = rand() % SIDE;
@@ -135,17 +135,29 @@ void printboard(char *b[][SIDE]) {
 
 int userscore = 0;
 int checkscores(char *ansboard[][SIDE],char *userboard[][SIDE], int row, int col){
-  if (strcmp(userboard[row][col], "_")!= 0){
-    printf("NON-VALID USER INPUT. ENTER VALID COORDINATES:\n");
-  }
-  if (strcmp(ansboard[row][col],"_") == 0){
-    userscore += 2;
-    //check if the box is the border stop exploring!
-    if(row == 0 || col == 0){
+  if(row < 0 || col < 0) {
       userboard[row][col] = ".";
       return 0;
     }
-    else if(row == 15 || col == 15){
+  else if(row > 15 || col > 15){
+    userboard[row][col] = ".";
+    return 0;
+  }
+  if (strcmp(userboard[row][col], "_")!= 0){
+  }
+  else if(strcmp(ansboard[row][col],"*") == 0){
+    userboard[row][col] = "*";
+    //SUBTRACT FROM THE USER SCORE!!!!!
+    //IMPLEMENT LATER!!!!!
+    return -1;
+  }
+  else if (strcmp(ansboard[row][col],"_") == 0){
+    //check if the box is the border stop exploring!
+    if(row < 0 || col < 0) {
+      userboard[row][col] = ".";
+      return 0;
+    }
+    else if(row > 15 || col > 15){
       userboard[row][col] = ".";
       return 0;
     }
@@ -154,41 +166,33 @@ int checkscores(char *ansboard[][SIDE],char *userboard[][SIDE], int row, int col
     //explore the different directions
     //ADD TO SCORE
     else{
-    userboard[row][col] = ".";
-    checkscores(ansboard,userboard,row-1,col);
-    checkscores(ansboard,userboard,row+1,col);
-    checkscores(ansboard,userboard,row,col-1);
-    checkscores(ansboard,userboard,row,col+1);
-    checkscores(ansboard,userboard,row-1,col-1);
-    checkscores(ansboard,userboard,row+1,col+1);
-    checkscores(ansboard,userboard,row-1,col+1);
-    checkscores(ansboard,userboard,row+1,col-1);
-    //recursive function:
-    //base case: if there is a BOMB or NUMBER
-    return 0;
-  }
+      userboard[row][col] = ".";
+      checkscores(ansboard,userboard,row-1,col);
+      checkscores(ansboard,userboard,row+1,col);
+      checkscores(ansboard,userboard,row,col-1);
+      checkscores(ansboard,userboard,row,col+1);
+      checkscores(ansboard,userboard,row-1,col-1);
+      checkscores(ansboard,userboard,row+1,col+1);
+      checkscores(ansboard,userboard,row-1,col+1);
+      checkscores(ansboard,userboard,row+1,col-1);
+      //recursive function:
+      //base case: if there is a BOMB or NUMBER
+      return 0;
+    }
 
   }
-  else if(strcmp(ansboard[row][col],"*") == 0){
-    userscore -= 4;
-    userboard[row][col] = "*";
-    //SUBTRACT FROM THE USER SCORE!!!!!
-    //IMPLEMENT LATER!!!!!
-    return 0;
-  }
-  else{
+  else {
     //if it's a number
     //ADD TO SCORE
-    userscore += 2;
     userboard[row][col] = ansboard[row][col];
     return 0;
-    }
+  }
 
 }
 
 
 
-int main(){
+/*int main(){
   char *aboard[SIDE][SIDE];
   //char *aboard = malloc(sizeof(char[SIDE][SIDE]));
   generateboard(aboard);
@@ -203,16 +207,17 @@ int main(){
   char* playerboard[SIDE][SIDE];
   generateboard(playerboard);
   printboard(playerboard);
-  checkscores(aboard,playerboard,14,14);
-    checkscores(aboard,playerboard,0,12);
-      checkscores(aboard,playerboard,6,11);
-      checkscores(aboard,playerboard,2,1);
-        checkscores(aboard,playerboard,15,12);
-          checkscores(aboard,playerboard,1,4);
-          checkscores(aboard,playerboard,2,3);
-            checkscores(aboard,playerboard,15,11);
-              checkscores(aboard,playerboard,1,1);
-    printboard(playerboard);
+  printf("Score at 14,14 is : %d\n", checkscores(aboard,playerboard,14,14));
+  printf("Score at 0,11 is : %d\n", checkscores(aboard,playerboard,0,11));
+  printf("Score at 6,11 is : %d\n", checkscores(aboard,playerboard,6,11));
+  printf("Score at 2,1 is : %d\n", checkscores(aboard,playerboard,2,1));
+  printf("Score at 15,12 is : %d\n", checkscores(aboard,playerboard,15,12));
+  printf("Score at 1,4 is : %d\n", checkscores(aboard,playerboard,1,4));
+  printf("Score at 2,3 is : %d\n", checkscores(aboard,playerboard,2,3));
+  printf("Score at 15,11 is : %d\n", checkscores(aboard,playerboard,15,11));
+  printf("Score at 1,1 is : %d\n", checkscores(aboard,playerboard,29,29));
+  printboard(playerboard);
   return 0;
-
+  
 }
+*/
