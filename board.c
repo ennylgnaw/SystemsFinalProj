@@ -121,13 +121,13 @@ void addbombcount(char *b[][SIDE]) {
 void printboard(char *b[][SIDE]) {
   int r, c;
   printf("\n    ");
-  for(c = 0; c < SIDE; c++)
+  for(c = 1; c <= SIDE; c++)
     printf("%-4d", c);
   printf("\n\n");
-  for(r = 0; r < SIDE; r++) {
+  for(r = 1; r <= SIDE; r++) {
     printf("%-4d", r);
     for(c = 0; c < SIDE; c++)
-      printf("%-4s", b[r][c]);
+      printf("%-4s", b[r-1][c]);
     printf("\n\n");
   }
 }
@@ -135,6 +135,8 @@ void printboard(char *b[][SIDE]) {
 
 int userscore = 0;
 int checkscores(char *ansboard[][SIDE],char *userboard[][SIDE], int row, int col){
+  row = row - 1;
+  col = col - 1;
   if(row < 0 || col < 0) {
       userboard[row][col] = ".";
       return 0;
@@ -167,14 +169,22 @@ int checkscores(char *ansboard[][SIDE],char *userboard[][SIDE], int row, int col
     //ADD TO SCORE
     else{
       userboard[row][col] = ".";
-      checkscores(ansboard,userboard,row-1,col);
-      checkscores(ansboard,userboard,row+1,col);
-      checkscores(ansboard,userboard,row,col-1);
-      checkscores(ansboard,userboard,row,col+1);
-      checkscores(ansboard,userboard,row-1,col-1);
-      checkscores(ansboard,userboard,row+1,col+1);
-      checkscores(ansboard,userboard,row-1,col+1);
-      checkscores(ansboard,userboard,row+1,col-1);
+      if (row > 0)
+	checkscores(ansboard,userboard,row-1,col); //s
+      if (row < SIDE - 1)
+	checkscores(ansboard,userboard,row+1,col); //n
+      if (col > 0)
+	checkscores(ansboard,userboard,row,col-1); //w
+      if (col < SIDE - 1)
+	checkscores(ansboard,userboard,row,col+1); //e
+      if (row > 0 && col > 0)
+	checkscores(ansboard,userboard,row-1,col-1); //sw
+      if (row < SIDE - 1 && col < SIDE - 1)
+	checkscores(ansboard,userboard,row+1,col+1); //ne
+      if (row > 0 && col < SIDE - 1)
+	checkscores(ansboard,userboard,row-1,col+1); //se
+      if (row < SIDE - 1 && col > 0)
+	checkscores(ansboard,userboard,row+1,col-1); //nw
       //recursive function:
       //base case: if there is a BOMB or NUMBER
       return 0;

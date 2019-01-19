@@ -52,6 +52,20 @@ int main(int argc, char **argv) {
     }
     
     int livesold = lives;
+    /*
+    int a;
+    int b;
+    if (*(buffer + 1) != 0) {
+      a = *(buffer);
+      b = *(buffer + 1);
+    }
+    
+
+    else {
+      a = *(buffer + 1);
+      b = *(buffer);
+    }
+    */
     lives += checkscores(aboard, user, *(buffer), *(buffer+1));
     if (lives < 0) lives = 0;
     if (lives > 3) lives = livesold;
