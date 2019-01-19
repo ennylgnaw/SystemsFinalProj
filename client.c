@@ -1,4 +1,16 @@
 #include "networking.h"
+#include <stdbool.h>
+
+bool gameOver(char * uboard[][SIDE], char * aboard[][SIDE]) {
+  int ct = 0;
+  for(int r = 0; r < SIDE; r++)
+      for(int c = 0; c < SIDE; c++)
+	if (strcmp(uboard[r][c], "-") == 0 || strcmp(uboard[r][c], "*") == 0)
+	  ct += 1;
+  if (ct == 40)
+    return true;
+  return false;
+}
 
 int main(int argc, char **argv) {
 
@@ -34,9 +46,15 @@ int main(int argc, char **argv) {
     printf("received: [%d]\n", *(buffer));
     printf("received: [%d]\n", *(buffer+1));
 
+    if (gameOver(user, aboard)) {
+      printf("You have finished this board.\n");
+      return 0;
+    }
     
-    
+    int livesold = lives;
     lives += checkscores(aboard, user, *(buffer), *(buffer+1));
+    if (lives < 0) lives = 0;
+    if (lives > 3) lives = livesold;
     printf("Lives Remaining : %d\n", lives);
 
     //CALL FUNCTION checkscores() here with parameters: ( answerboard, userboard, *(buffer), *(buffer+1) )

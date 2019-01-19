@@ -16,7 +16,7 @@
 #define BOMB 40
 
 void generatebombs(char *b[][SIDE]) {
-  int numofbombs = 35;
+  int numofbombs = BOMB;
   srand(time(NULL));
   while (numofbombs) {
     int x = rand() % SIDE;
