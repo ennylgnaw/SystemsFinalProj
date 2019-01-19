@@ -4,7 +4,7 @@
 ## Project Description ##
 Competitive Minesweeper is a twist on the classic minesweeper game. Clients will compete with other clients to get the highest score in one session. Clients' scores are passed back to the server, and the winner receives a message of congratulations. Clients can play in different terminal windows.
 
-## Running the Server ##
+## Running the Program ##
 1. Clone the repo using the following link:
 `https://github.com/ennylgnaw/SystemsFinalProj.git`
 2. Run `make`
