@@ -1,0 +1,44 @@
+DEVLOG
+
+12/28:
+Jackie: Worked on proposal
+Lynne: Worked on proposal
+Tiffany: Worked on proposal
+
+12/29:
+Jackie: Finalized proposal
+Lynne: Finalized proposal
+Tiffany: Finalized proposal
+
+1/7:
+Jackie: Started working on basic sockets
+Lynne: Worked on methods to generate a minesweeper board in board.c
+Tiffany: Worked on methods to generate a minesweeper board in board.c
+
+1/8:
+Jackie: Continued working on sockets
+Lynne: Wrote methods to randomly populate a minesweeper board with mines
+Tiffany: Wrote methods to count the bombs around a mine-free space
+
+1/11:
+Jackie: Modified socket code to support the game
+Lynne: Wrote methods to create an answer board
+Tiffany: Wrote methods to open spots on a board given user input
+
+1/14:
+Jackie: Set up client/server system
+Lynne: Updated board.c
+Tiffany: Updated board.c
+
+1/16:
+Jackie: Debugged server/client system
+Lynne: Updated board.c
+Tiffany: Updated board.c
+
+1/17:
+Jackie: Modified network system to handle user input in conjunction with board.c
+Lynne: Deebugged board.c
+Tiffany: Debugged board.c
+
+1/18:
+All: Debugging, updated README
