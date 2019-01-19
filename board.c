@@ -195,7 +195,7 @@ int checkscores(char *ansboard[][SIDE],char *userboard[][SIDE], int row, int col
     userboard[row][col] = ansboard[row][col];
     return 0;
   }
-
+return 0;
 }
 
 
@@ -226,6 +226,6 @@ int checkscores(char *ansboard[][SIDE],char *userboard[][SIDE], int row, int col
   printf("Score at 1,1 is : %d\n", checkscores(aboard,playerboard,29,29));
   printboard(playerboard);
   return 0;
-  
+
 }
 */
