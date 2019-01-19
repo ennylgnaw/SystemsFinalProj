@@ -53,7 +53,9 @@ int main(int argc, char **argv) {
     
     int livesold = lives;
 
-    lives += checkscores(aboard, user, *(buffer), *(buffer+1));
+    int a = *(buffer) - 1;
+    int b = *(buffer + 1) - 1;
+    lives += checkscores(aboard, user, a, b);
     if (lives < 0) lives = 0;
     if (lives > 3) lives = livesold;
     printf("Lives Remaining : %d\n", lives);

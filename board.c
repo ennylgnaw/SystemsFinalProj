@@ -135,8 +135,6 @@ void printboard(char *b[][SIDE]) {
 
 int userscore = 0;
 int checkscores(char *ansboard[][SIDE],char *userboard[][SIDE], int row, int col){
-  row = row - 1;
-  col = col - 1;
   if(row < 0 || col < 0) {
       userboard[row][col] = ".";
       return 0;
