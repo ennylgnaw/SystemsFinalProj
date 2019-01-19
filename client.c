@@ -13,9 +13,13 @@ int main(int argc, char **argv) {
   }
  
   char * aboard[SIDE][SIDE];
+  char * user[SIDE][SIDE];
   generateboard(aboard);
+  generateboard(user);
   generatebombs(aboard);
   while (1) {
+    printboard(user);
+    addbombcount(aboard);
     printboard(aboard);
     printf("enter data: ");
     fgets(buffer, sizeof(buffer), stdin);
@@ -25,8 +29,12 @@ int main(int argc, char **argv) {
     printf("received: [%d]\n", *(buffer));
     printf("received: [%d]\n", *(buffer+1));
 
-    //CALL FUNCTION checkscores() here with parameters: ( answerboard, userboard, *(buffer), *(buffer+1) )
+    int scores = 0;
+    scores = checkscores(aboard, user, *(buffer), *(buffer+1));
+    printf("Your Score is :%d\n", scores);
 
+    //CALL FUNCTION checkscores() here with parameters: ( answerboard, userboard, *(buffer), *(buffer+1) )
+    
 
   }
 }

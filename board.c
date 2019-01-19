@@ -132,7 +132,7 @@ void printboard(char *b[][SIDE]) {
   }
 }
 
-/*
+
 int userscore = 0;
 int checkscores(char *ansboard[][SIDE],char *userboard[][SIDE], int row, int col){
   if (strcmp(userboard[row][col], "_")!= 0){
@@ -172,7 +172,7 @@ int checkscores(char *ansboard[][SIDE],char *userboard[][SIDE], int row, int col
     return 0;
     }
 
-}*/
+}
 
 
 
