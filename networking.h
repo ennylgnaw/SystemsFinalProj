@@ -12,14 +12,20 @@
 #ifndef NETWORKING_H
 #define NETWORKING_H
 
+#define SIDE 24
 #define BUFFER_SIZE 256
-#define PORT "9050"
+#define PORT "10001"
 #define TEST_IP "127.0.0.1"
 
 void error_check(int i, char *s);
 int server_setup();
 int server_connect(int sd);
 int client_setup(char * server);
+
+void generatebombs(char *b[][SIDE]);
+void generateboard(char *b[][SIDE]);
+void printboard( char * b[][SIDE]);
+int checkscores(char *ansboard[][SIDE],char *userboard[][SIDE], int row, int col);
 
 
 #endif

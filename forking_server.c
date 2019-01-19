@@ -1,6 +1,6 @@
 #include "networking.h"
 
-void process(char *s);
+char * process(char *s);
 void subserver(int from_client);
 
 int main() {
@@ -26,20 +26,22 @@ void subserver(int client_socket) {
   while (read(client_socket, buffer, sizeof(buffer))) {
 
     printf("[subserver %d] received: [%s]\n", getpid(), buffer);
-    process(buffer);
-    printf("Buffer is: %s\n", buffer);
+    strcpy(buffer, process(buffer));
+    printf("Buffer is: %d\n", *(buffer));
+    printf("Buffer is also: %d\n", *(buffer+1));
     write(client_socket, buffer, sizeof(buffer));
   }//end read loop
   close(client_socket);
   exit(0);
 }
 
-void process(char * s) {
+
+char * process(char * s) {
   char * retVal;
   int ctr, total;
   retVal = strtok(s, " .,'*!@$%^&()_+-");
 
-  char foo[100];
+  char * foo = malloc(sizeof(char) * 100);
   ctr = 0;
   while (retVal != NULL) {
     int i = atoi(retVal);
@@ -53,20 +55,19 @@ void process(char * s) {
   }
   printf("Total numbers: %d\n", ctr);
 
-  printf("[ ");
+  printf("Foo is: [ ");
   for (total = 0; total < ctr; total++) {
     printf("%d ", foo[total]);
   }
   printf("]\n");
 
-  /*while (*s) {
-    for (int j = 0; j < ctr; j++) {
-      //printf("Adding %d \n", foo[j]);
-      sprintf(s, "%d ", foo[j]);
-    }
-    s++;
-  }*/
-
   s = foo;
-  printf("Final String: %s\n", s);
+  *s = *(s);
+  printf("Final String: %d\n", *(s));
+  
+  return foo;
 }
+
+
+
+

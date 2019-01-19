@@ -1,3 +1,4 @@
+#include "networking.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -130,6 +131,7 @@ void printboard(char *b[][SIDE]) {
     printf("\n\n");
   }
 }
+
 /*
 int userscore = 0;
 int checkscores(char *ansboard[][SIDE],char *userboard[][SIDE], int row, int col){
@@ -170,12 +172,11 @@ int checkscores(char *ansboard[][SIDE],char *userboard[][SIDE], int row, int col
     return 0;
     }
 
-}
-*/
+}*/
 
 
 
-int main(){
+/*int main(){
   char *aboard[SIDE][SIDE];
   //char *aboard = malloc(sizeof(char[SIDE][SIDE]));
   generateboard(aboard);
@@ -185,10 +186,10 @@ int main(){
   printf("%c\n", countbombs(aboard, 12, 12));
   addbombcount(aboard);
   printboard(aboard);
-  /*
+  
     countbombs(aboard, 12, 12);
     generateboard(aboard);
     printboard(aboard);
     return 0;
-  */
-}
+  
+}*/
