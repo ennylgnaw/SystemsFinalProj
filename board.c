@@ -12,8 +12,8 @@
 #include <time.h>
 
 
-#define SIDE 24
-#define BOMB 99
+#define SIDE 16
+#define BOMB 40
 
 void generatebombs(char *b[][SIDE]) {
   int numofbombs = 99;
@@ -140,10 +140,21 @@ int checkscores(char *ansboard[][SIDE],char *userboard[][SIDE], int row, int col
   }
   if (strcmp(ansboard[row][col],"_") == 0){
     userscore += 2;
+    //check if the box is the border stop exploring!
+    if(row == 0 || col == 0){
+      userboard[row][col] = ".";
+      return 0;
+    }
+    else if(row == 15 || col == 15){
+      userboard[row][col] = ".";
+      return 0;
+    }
     //if it's an empty box
     //int directions[8][2] = {{row-1,col},{row+1,col},{row,col-1},{row,col+1},{row-1,col-1},{row-1,col+1},{row+1,col-1},{row+1,col+1}};
     //explore the different directions
     //ADD TO SCORE
+    else{
+    userboard[row][col] = ".";
     checkscores(ansboard,userboard,row-1,col);
     checkscores(ansboard,userboard,row+1,col);
     checkscores(ansboard,userboard,row,col-1);
@@ -155,6 +166,7 @@ int checkscores(char *ansboard[][SIDE],char *userboard[][SIDE], int row, int col
     //recursive function:
     //base case: if there is a BOMB or NUMBER
     return 0;
+  }
 
   }
   else if(strcmp(ansboard[row][col],"*") == 0){
@@ -176,7 +188,7 @@ int checkscores(char *ansboard[][SIDE],char *userboard[][SIDE], int row, int col
 
 
 
-/*int main(){
+int main(){
   char *aboard[SIDE][SIDE];
   //char *aboard = malloc(sizeof(char[SIDE][SIDE]));
   generateboard(aboard);
@@ -186,10 +198,21 @@ int checkscores(char *ansboard[][SIDE],char *userboard[][SIDE], int row, int col
   printf("%c\n", countbombs(aboard, 12, 12));
   addbombcount(aboard);
   printboard(aboard);
-  
-    countbombs(aboard, 12, 12);
-    generateboard(aboard);
-    printboard(aboard);
-    return 0;
-  
-}*/
+
+  countbombs(aboard, 12, 12);
+  char* playerboard[SIDE][SIDE];
+  generateboard(playerboard);
+  printboard(playerboard);
+  checkscores(aboard,playerboard,14,14);
+    checkscores(aboard,playerboard,0,12);
+      checkscores(aboard,playerboard,6,11);
+      checkscores(aboard,playerboard,2,1);
+        checkscores(aboard,playerboard,15,12);
+          checkscores(aboard,playerboard,1,4);
+          checkscores(aboard,playerboard,2,3);
+            checkscores(aboard,playerboard,15,11);
+              checkscores(aboard,playerboard,1,1);
+    printboard(playerboard);
+  return 0;
+
+}
